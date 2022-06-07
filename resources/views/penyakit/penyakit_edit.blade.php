@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('penyakit.update',$penyakit->id) }}" method="post">
+                    <form action="{{ route('penyakit.update',$penyakit->id) }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         @method('PUT')
                         <input type="hidden" name="id" value="{{ $penyakit->id }}">

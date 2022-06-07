@@ -87,11 +87,17 @@ class PenyakitController extends Controller
      */
     public function update(Request $request, Penyakit $penyakit)
     {
-        $file   = $request->file('gambar');
+        $file = $request->file('gambar');
         
         if(isset($file)){
-            $upload = $file->move('img_upload',$file->getClientOriginalName());
+            $path = public_path().'/img_upload/';
 
+            if($penyakit->gambar != ''  && $penyakit->gambar != null){
+                $file_old = $path.$penyakit->gambar;
+                unlink($file_old);
+            }
+
+            $upload = $file->move('img_upload',$file->getClientOriginalName());
             if($upload){
                 DB::table('penyakits')->where('id',$request->id)->update([
                     'kode_penyakit' => $request->kode_penyakit,
