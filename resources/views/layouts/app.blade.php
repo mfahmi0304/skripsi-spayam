@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +17,7 @@
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper" id="app">
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="{{ asset('dist/img/cars.png') }}" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__wobble" src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
         </div>
         <nav class="main-header navbar navbar-expand navbar-dark">
             <ul class="navbar-nav">
@@ -100,7 +99,6 @@
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
-    <!-- <script src="{{ asset('dist/js/demo.js') }}"></script> -->
     <script src="{{ asset('dist/js/pages/dashboard2.js') }}"></script>
     <script>
         var buttons = [
@@ -148,8 +146,8 @@
         ];
         
         $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": buttons
+            "responsive": true, "lengthChange": true, "autoWidth": false,
+            "buttons": buttons,
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
         $('.select2').select2({
