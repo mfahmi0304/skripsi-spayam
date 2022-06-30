@@ -15,10 +15,10 @@ class CreateBasisPengetahuansTable extends Migration
     {
         Schema::create('basis_pengetahuans', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('id_gejala');
-            $table->unsignedBigInteger('id_penyakit');
-            $table->foreign('id_gejala')->references('id')->on('gejalas');
-            $table->foreign('id_penyakit')->references('id')->on('penyakits');
+            $table->unsignedInteger('id_gejala');
+            $table->unsignedInteger('id_penyakit');
+            $table->foreign('id_gejala')->references('id')->on('gejalas')->onDelete('cascade');
+            $table->foreign('id_penyakit')->references('id')->on('penyakits')->onDelete('cascade');
             $table->timestamps();
         });
     }
