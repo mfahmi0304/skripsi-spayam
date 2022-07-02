@@ -14,8 +14,12 @@ class PenyakitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->user()->hasRole('user')) {
+            return view('403');
+        }
+
         $penyakit = DB::table('penyakits')->get();
         return view('penyakit.penyakit_list', compact('penyakit'));
     }

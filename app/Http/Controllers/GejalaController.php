@@ -14,8 +14,12 @@ class GejalaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->user()->hasRole('user')) {
+            return view('403');
+        }
+
         $gejala = DB::table('gejalas')->get();
         return view('gejala.gejala_list', compact('gejala'));
     }

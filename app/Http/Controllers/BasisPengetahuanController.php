@@ -14,8 +14,12 @@ class BasisPengetahuanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->user()->hasRole('user')) {
+            return view('403');
+        }
+
         $basis_pengetahuan = DB::table('basis_pengetahuans')
         ->join('gejalas', 'gejalas.id', '=', 'basis_pengetahuans.id_gejala')   
         ->join('penyakits', 'penyakits.id', '=', 'basis_pengetahuans.id_penyakit')   

@@ -7,7 +7,7 @@
             <img src="{{ asset('dist/img/avatar5.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">Admin</a>
+            <a href="#" class="d-block">{{Auth::user()->name}}</a>
             <a href="#"><i class="fas fa-circle text-success fa-xs"></i> Online</a>
         </div>
     </div>

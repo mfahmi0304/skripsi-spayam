@@ -29,12 +29,12 @@
                 <li class="nav-item dropdown user user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                         <img src="{{ asset('dist/img/avatar5.png') }}" class="user-image img-circle elevation-2 alt="User Image">
-                        <span class="hidden-xs">Admin</span>
+                        <span class="hidden-xs">{{Auth::user()->name}}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <li class="user-header bg-primary">
                             <img src="{{ asset('dist/img/avatar5.png') }}" class="img-circle elevation-2" alt="User Image">
-                            <p>Admin</p> 
+                            <p>{{Auth::user()->name}}</p> 
                             <a href="#"><i class="fas fa-circle text-success fa-xs"></i> Online</a>
                         </li>
                         <li class="user-body">
