@@ -22,8 +22,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->user()->hasRole('user')) {
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
+        }
         $gejala = DB::table('gejalas')->count();
         $penyakit = DB::table('penyakits')->count();
         $basis_pengetahuan = DB::table('basis_pengetahuans')->count();
@@ -34,6 +40,6 @@ class HomeController extends Controller
             'basis_pengetahuan' => $basis_pengetahuan
         );
 
-        return view('home', compact('data'));
+        return view('home', compact(['data', 'role']));
     }
 }

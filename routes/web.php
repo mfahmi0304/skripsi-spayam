@@ -23,5 +23,6 @@ Route::middleware(['auth'])->group(function () {
         'gejala'            => 'GejalaController',
         'penyakit'          => 'PenyakitController',
         'basis_pengetahuan' => 'BasisPengetahuanController',
+        'diagnosa'          => 'DiagnosaController',
     ]);
 });

@@ -18,6 +18,10 @@ class BasisPengetahuanController extends Controller
     {
         if ($request->user()->hasRole('user')) {
             return view('403');
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
         }
 
         $basis_pengetahuan = DB::table('basis_pengetahuans')
@@ -25,7 +29,7 @@ class BasisPengetahuanController extends Controller
         ->join('penyakits', 'penyakits.id', '=', 'basis_pengetahuans.id_penyakit')   
         ->select('basis_pengetahuans.*', 'gejalas.nama_gejala', 'penyakits.nama_penyakit')
         ->get();
-        return view('basis_pengetahuan.basis_pengetahuan_list', compact('basis_pengetahuan'));
+        return view('basis_pengetahuan.basis_pengetahuan_list', compact(['basis_pengetahuan', 'role']));
     }
 
     /**
@@ -33,11 +37,19 @@ class BasisPengetahuanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if ($request->user()->hasRole('user')) {
+            return view('403');
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
+        }
+
         $gejala = DB::table('gejalas')->get();
         $penyakit = DB::table('penyakits')->get();
-        return view('basis_pengetahuan.basis_pengetahuan_add', compact(['gejala', 'penyakit']));
+        return view('basis_pengetahuan.basis_pengetahuan_add', compact(['gejala', 'penyakit', 'role']));
     }
 
     /**
@@ -74,11 +86,19 @@ class BasisPengetahuanController extends Controller
      * @param  \App\BasisPengetahuan  $basisPengetahuan
      * @return \Illuminate\Http\Response
      */
-    public function edit(BasisPengetahuan $basisPengetahuan)
+    public function edit(BasisPengetahuan $basisPengetahuan, Request $request)
     {
+        if ($request->user()->hasRole('user')) {
+            return view('403');
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
+        }
+
         $gejala = DB::table('gejalas')->get();
         $penyakit = DB::table('penyakits')->get();
-        return view('basis_pengetahuan.basis_pengetahuan_edit', compact(['basisPengetahuan', 'gejala', 'penyakit']));
+        return view('basis_pengetahuan.basis_pengetahuan_edit', compact(['basisPengetahuan', 'gejala', 'penyakit', 'role']));
     }
 
     /**

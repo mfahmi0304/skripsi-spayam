@@ -20,6 +20,7 @@
                     <p>Beranda</p>
                 </a>
             </li>
+            @if($role == 'admin')
             <li class="nav-item">
                 <a href="/gejala" class="nav-link">
                     <i class="fas fa-thermometer-half nav-icon"></i>
@@ -38,6 +39,14 @@
                     <p>Basis Pengetahuan</p>
                 </a>
             </li>
+            @else
+            <li class="nav-item">
+                <a href="/diagnosa" class="nav-link">
+                    <i class="fas fa-lightbulb nav-icon"></i>
+                    <p>Diagnosa</p>
+                </a>
+            </li>
+            @endif
         </ul>
     </nav>
 </div>

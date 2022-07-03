@@ -18,10 +18,14 @@ class PenyakitController extends Controller
     {
         if ($request->user()->hasRole('user')) {
             return view('403');
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
         }
 
         $penyakit = DB::table('penyakits')->get();
-        return view('penyakit.penyakit_list', compact('penyakit'));
+        return view('penyakit.penyakit_list', compact(['penyakit', 'role']));
     }
 
     /**
@@ -29,9 +33,17 @@ class PenyakitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('penyakit.penyakit_add');
+        if ($request->user()->hasRole('user')) {
+            return view('403');
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
+        }
+
+        return view('penyakit.penyakit_add', compact('role'));
     }
 
     /**
@@ -77,9 +89,17 @@ class PenyakitController extends Controller
      * @param  \App\Penyakit  $penyakit
      * @return \Illuminate\Http\Response
      */
-    public function edit(Penyakit $penyakit)
+    public function edit(Penyakit $penyakit, Request $request)
     {
-        return view('penyakit.penyakit_edit', compact('penyakit'));
+        if ($request->user()->hasRole('user')) {
+            return view('403');
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
+        }
+
+        return view('penyakit.penyakit_edit', compact(['penyakit', 'role']));
     }
 
     /**

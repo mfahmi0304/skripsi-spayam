@@ -18,10 +18,14 @@ class GejalaController extends Controller
     {
         if ($request->user()->hasRole('user')) {
             return view('403');
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
         }
 
         $gejala = DB::table('gejalas')->get();
-        return view('gejala.gejala_list', compact('gejala'));
+        return view('gejala.gejala_list', compact(['role','gejala']));
     }
 
     /**
@@ -29,9 +33,17 @@ class GejalaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('gejala.gejala_add');
+        if ($request->user()->hasRole('user')) {
+            return view('403');
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
+        }
+
+        return view('gejala.gejala_add', compact('role'));
     }
 
     /**
@@ -68,9 +80,16 @@ class GejalaController extends Controller
      * @param  \App\Gejala  $gejala
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gejala $gejala)
+    public function edit(Gejala $gejala, Request $request)
     {
-        return view('gejala.gejala_edit', compact('gejala'));
+        if ($request->user()->hasRole('user')) {
+            return view('403');
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
+        }
+        return view('gejala.gejala_edit', compact(['gejala', 'role']));
     }
 
     /**

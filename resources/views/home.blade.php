@@ -14,11 +14,12 @@
                         </div>
                     @endif
 
-                    {{ __('Anda Login Sebagai Admin') }}
+                    {{ __('Anda Login Sebagai ') }} {{ucfirst($role)}}
                 </div>
             </div>
         </div>
     </div>
+    @if($role == 'admin')
     <div class="row justify-content-center">
         <div class="col-12 col-sm-8 col-md-4">
             <div class="info-box">
@@ -48,5 +49,6 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
 @endsection
