@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\BasisPengetahuan;
+use App\Gejala;
+use App\Penyakit;
 use App\Diagnosa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -24,10 +27,17 @@ class DiagnosaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if ($request->user()->hasRole('user')) {
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
+        }
+
         $gejala = DB::table('gejalas')->get();
-        return view('diagnosa.diagnosa_add', compact('gejala'));
+        return view('diagnosa.diagnosa_add', compact(['gejala', 'role']));
     }
 
     /**
@@ -37,8 +47,32 @@ class DiagnosaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {        
+        $id_gejala = implode(",",$request->id_gejala);
+        
+        $penyakit = DB::table('penyakits')->get();
+
+        $res = [];
+
+        foreach($penyakit as $data){
+            $bp = DB::table('basis_pengetahuans')
+                ->where('id_penyakit', $data->id)
+                ->orderBy('id_gejala')
+                ->get();
+            
+            if($bp){
+                $arr_bp = [];
+                foreach($bp as $rules){
+                    $arr_bp[] = $rules->id_gejala;
+                }
+            }
+
+            if($arr_bp == $request->id_gejala){
+                $res = DB::table('penyakits')->where('id', $data->id)->get();
+            }
+        }
+
+        dd($res);
     }
 
     /**
