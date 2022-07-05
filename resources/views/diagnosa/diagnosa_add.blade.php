@@ -17,7 +17,7 @@
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-12">
-                                <table class="table table-bordered table-striped">
+                                <table id="example2" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>No</th>

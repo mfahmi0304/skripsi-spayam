@@ -72,7 +72,19 @@ class DiagnosaController extends Controller
             }
         }
 
-        dd($res);
+        if($res){
+            DB::table('diagnosas')->insert([
+                'gejala'        => $id_gejala,
+                'id_penyakit'   => $res[0]->id,
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
+            ]);
+
+            $last_id = DB::getPdo()->lastInsertId();
+            
+            return redirect()->to('diagnosa/'.$last_id);
+        }
+        dd("Penyakit tidak terdeteksi");
     }
 
     /**
@@ -81,9 +93,21 @@ class DiagnosaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        if ($request->user()->hasRole('user')) {
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
+        }
+
+        $diagnosa = DB::table('diagnosas')
+            ->join('penyakits', 'penyakits.id', 'diagnosas.id_penyakit')
+            ->where('diagnosas.id', $id)
+            ->get();
+
+        return view('diagnosa.diagnosa_show', compact(['diagnosa', 'role']));
     }
 
     /**

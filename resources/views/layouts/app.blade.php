@@ -150,6 +150,15 @@
             "buttons": buttons,
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
+        $("#example2").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": [],
+            lengthMenu: [
+                [50, 25, 10],
+                [50, 25, 10]
+            ],
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
         $('.select2').select2({
             placeholder: "[Pilih]",
         });
