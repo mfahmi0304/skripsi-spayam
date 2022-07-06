@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Selamat Datang di SIPABANG (Sistem Pakar Diagnosa Penyakit Ayam Bangkok)') }}</div>
+                <div class="card-header bg-primary">{{ __('Selamat Datang di SIPABANG (Sistem Pakar Diagnosa Penyakit Ayam Bangkok)') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -43,7 +43,7 @@
             <div class="info-box mb-3">
                 <span class="info-box-icon bg-success elevation-1"><i class="fas fa-lightbulb"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Total Aturan</span>
+                    <span class="info-box-text">Basis Pengetahuan</span>
                     <span class="info-box-number">{{ $data['basis_pengetahuan'] }}</span>
                 </div>
             </div>

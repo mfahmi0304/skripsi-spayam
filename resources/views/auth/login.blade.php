@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+    <style>
+        .login-page {
+            background-image: url('../dist/img/bglogin.jpg');
+            background-size: 100%;
+        }
+    </style>
 </head>
 
 <body class="hold-transition login-page">
@@ -56,7 +62,7 @@
                         @enderror
                     </div>
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-6">
                             <div class="icheck-primary">
                                 <input type="checkbox" id="remember">
                                 <label for="remember">
@@ -65,7 +71,7 @@
                             </div>
                         </div>
                         <!-- /.col -->
-                        <div class="col-4">
+                        <div class="col-6">
                             <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Masuk</button>
                         </div>
                         <!-- /.col -->

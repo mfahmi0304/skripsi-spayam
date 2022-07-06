@@ -14,12 +14,20 @@
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 </head>
+@if(isset($role) && $role == 'peternak')
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+@else
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+@endif
     <div class="wrapper" id="app">
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__wobble" src="{{ asset('dist/img/rooster.png') }}" alt="AdminLTELogo" height="80" width="80">
         </div>
+        @if(isset($role) && $role == 'peternak')
+        <nav class="main-header navbar navbar-expand navbar-dark bg-primary">
+        @else
         <nav class="main-header navbar navbar-expand navbar-dark">
+        @endif
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -73,7 +81,7 @@
                 @yield('content')
             </section>
         </div>
-        <footer class="main-footer">
+        <footer class="main-footer dark-mode">
             <strong>@Copyright by 18111111_MUHAMMAD FAHMI NUR AZIZ_TIF K 18A</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">

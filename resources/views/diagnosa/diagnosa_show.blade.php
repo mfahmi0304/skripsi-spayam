@@ -1,11 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .text-justify{
+        text-align: justify;
+        text-justify: inter-word;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header bg-primary">
                     <div class="row">
                         <div class="col-md-9">
                             <h3 class="card-title">Hasil Diagnosa Penyakit Ayam Bangkok</h3>
@@ -14,17 +20,17 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-8 col-sm-12">
                             @php
                                 $penyakit = explode("(", $diagnosa[0]->nama_penyakit);
                             @endphp
 
-                            <h3>{{$penyakit[0]}}</h3>
+                            <h3><b>{{$penyakit[0]}}</b></h3>
                             <h4><i>({{$penyakit[1]}}</i></h4>
-                            <p>{{$diagnosa[0]->detail}}</p>
+                            <p class="text-justify">{{$diagnosa[0]->detail}}</p>
                         </div>
-                        <div class="col-md-6 col-sm-12 text-right">
-                            <img src="{{ asset('img_upload/'.$diagnosa[0]->gambar) }}" width="350px">
+                        <div class="col-md-4 col-sm-12 text-right">
+                            <img src="{{ asset('img_upload/'.$diagnosa[0]->gambar) }}" width="100%">
                         </div>
                     </div>
                     <br>
@@ -39,7 +45,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <p>{{$diagnosa[0]->solusi}}</p>
+                                    <p class="text-justify">{{$diagnosa[0]->solusi}}</p>
                                 </div>
                             </div>
                         </div>
