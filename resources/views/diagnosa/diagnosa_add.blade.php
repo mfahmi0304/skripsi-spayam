@@ -13,6 +13,14 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    @if ($message = Session::get('warning'))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <p>{{ $message }}</p>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <form action="{{ route('diagnosa.store') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="row">

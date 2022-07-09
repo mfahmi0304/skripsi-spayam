@@ -84,7 +84,7 @@ class DiagnosaController extends Controller
             
             return redirect()->to('diagnosa/'.$last_id);
         }
-        dd("Penyakit tidak terdeteksi");
+        return redirect('diagnosa/create')->with('warning','Penyakit tidak terdeteksi');
     }
 
     /**
