@@ -17,9 +17,21 @@ class DiagnosaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return redirect('diagnosa/create');
+        if ($request->user()->hasRole('user')) {
+            $role = 'peternak';
+        }
+        else{
+            $role = 'admin';
+        }
+
+        $diagnosa = DB::table('diagnosas')
+            ->join('penyakits', 'penyakits.id', '=', 'diagnosas.id_penyakit')   
+            ->orderBy('diagnosas.created_at', 'desc')
+            ->select('diagnosas.id', 'diagnosas.created_at', 'nama_penyakit')
+            ->get();
+        return view('diagnosa.diagnosa_list', compact(['role','diagnosa']));
     }
 
     /**
