@@ -26,12 +26,26 @@ class DiagnosaController extends Controller
             $role = 'admin';
         }
 
-        $diagnosa = DB::table('diagnosas')
-            ->join('penyakits', 'penyakits.id', '=', 'diagnosas.id_penyakit')   
-            ->orderBy('diagnosas.created_at', 'desc')
-            ->select('diagnosas.id', 'diagnosas.created_at', 'nama_penyakit')
-            ->get();
-        return view('diagnosa.diagnosa_list', compact(['role','diagnosa']));
+        $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '';
+        $end_date   = isset($_GET['end_date']) ? $_GET['end_date'] : '';
+
+        if($_GET['start_date'] && $_GET['start_date']){
+            $diagnosa = DB::table('diagnosas')
+                ->join('penyakits', 'penyakits.id', '=', 'diagnosas.id_penyakit')   
+                ->whereBetween(DB::raw("DATE(`diagnosas`.`created_at`)"),[$start_date , $end_date])
+                ->orderBy('diagnosas.created_at', 'desc')
+                ->select('diagnosas.id', 'diagnosas.created_at', 'nama_penyakit')
+                ->get();
+        }
+        else{
+            $diagnosa = DB::table('diagnosas')
+                ->join('penyakits', 'penyakits.id', '=', 'diagnosas.id_penyakit')   
+                ->orderBy('diagnosas.created_at', 'desc')
+                ->select('diagnosas.id', 'diagnosas.created_at', 'nama_penyakit')
+                ->get();
+        }
+
+        return view('diagnosa.diagnosa_list', compact(['role', 'diagnosa', 'start_date', 'end_date']));
     }
 
     /**

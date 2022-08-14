@@ -24,6 +24,26 @@
                             </button>
                         </div>
                     @endif
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Dari Tanggal</label>
+                                <input type="date" class="form-control" id="start_date">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Sampai Tanggal</label>
+                                <input type="date" class="form-control" id="end_date">
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label>Cari</label>
+                                <button class="form-control btn-search"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -57,4 +77,24 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        let date1 = `<?=$start_date?>`;
+        let date2 = `<?=$end_date?>`;
+
+        if(date1 && date2){
+            $('#start_date').val(date1);
+            $('#end_date').val(date2);
+        }
+    });
+
+    $('.btn-search').click(function() {
+
+        let start_date = $('#start_date').val();
+        let end_date = $('#end_date').val();
+
+        window.location.href = '/diagnosa?start_date='+start_date+'&end_date='+end_date;
+    });
+</script>
 @endsection
