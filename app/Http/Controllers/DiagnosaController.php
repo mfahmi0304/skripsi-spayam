@@ -29,7 +29,7 @@ class DiagnosaController extends Controller
         $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '';
         $end_date   = isset($_GET['end_date']) ? $_GET['end_date'] : '';
 
-        if($_GET['start_date'] && $_GET['start_date']){
+        if(isset($_GET['start_date']) && isset($_GET['start_date'])){
             $diagnosa = DB::table('diagnosas')
                 ->join('penyakits', 'penyakits.id', '=', 'diagnosas.id_penyakit')   
                 ->whereBetween(DB::raw("DATE(`diagnosas`.`created_at`)"),[$start_date , $end_date])
