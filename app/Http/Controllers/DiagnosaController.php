@@ -95,6 +95,7 @@ class DiagnosaController extends Controller
 
             if($arr_bp == $request->id_gejala){
                 $res = DB::table('penyakits')->where('id', $data->id)->get();
+                break;
             }
         }
 
@@ -133,7 +134,17 @@ class DiagnosaController extends Controller
             ->where('diagnosas.id', $id)
             ->get();
 
-        return view('diagnosa.diagnosa_show', compact(['diagnosa', 'role']));
+        $gejala = [];
+        $id_gejala = explode(",", $diagnosa[0]->gejala);
+
+        foreach($id_gejala as $id){
+            $get_gejala = DB::table('gejalas')
+                ->where('id', $id)
+                ->first();
+            array_push($gejala, $get_gejala->nama_gejala);
+        }
+
+        return view('diagnosa.diagnosa_show', compact(['diagnosa', 'role', 'gejala']));
     }
 
     /**

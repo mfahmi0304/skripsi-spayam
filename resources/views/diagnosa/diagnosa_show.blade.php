@@ -10,6 +10,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <div class="alert alert-info">
+                <h5>Gejala</h5>
+                @foreach($gejala as $key => $data)
+                    {{$key+1}} . {{$data}} <br>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-primary">
                     <div class="row">

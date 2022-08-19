@@ -167,7 +167,7 @@
             yAxes: [{
                 gridLines : {
                     display : false,
-                }
+                },
             }]
         }
     }
@@ -188,19 +188,51 @@
     var barChartOptions = {
         responsive              : true,
         maintainAspectRatio     : false,
-        datasetFill             : false
+        datasetFill             : false,
     }
 
     new Chart(barChartGejala, {
         type: 'bar',
         data: barChartDataGejala,
-        options: barChartOptions
+        options: {
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        userCallback: function(label, index, labels) {
+                            // when the floored value is the same as the value we have a whole number
+                            if (Math.floor(label) === label) {
+                                return label;
+                            }
+
+                        },
+                    }
+                }]
+            }
+        }
     })
 
     new Chart(barChartPenyakit, {
         type: 'bar',
         data: barChartDataPenyakit,
-        options: barChartOptions
+        options: {
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        userCallback: function(label, index, labels) {
+                            // when the floored value is the same as the value we have a whole number
+                            if (Math.floor(label) === label) {
+                                return label;
+                            }
+
+                        },
+                    }
+                }]
+            }
+        }
     })
 </script>
 @endsection

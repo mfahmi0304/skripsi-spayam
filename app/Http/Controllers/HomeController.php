@@ -37,12 +37,15 @@ class HomeController extends Controller
 
         $penyakit_terbanyak = DB::table('diagnosas')
         ->join('penyakits', 'penyakits.id', 'diagnosas.id_penyakit')
+        ->where(DB::raw("MONTH(`diagnosas`.`created_at`)"),date("m"))
         ->select('nama_penyakit', DB::raw('count(*) as total'))
         ->groupBy('nama_penyakit')
+        ->orderBy('total', 'desc')
         ->get();
 
         $gejala_penyakit = DB::table('diagnosas')
         ->select('gejala')
+        ->where(DB::raw("MONTH(`diagnosas`.`created_at`)"),date("m"))
         ->get();
 
         $data = '';
