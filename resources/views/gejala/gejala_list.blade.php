@@ -30,6 +30,7 @@
                                 <th style="width: 20px" class="text-center">No</th>
                                 <th>Kode Gejala</th>
                                 <th>Nama Gejala</th>
+                                <th>Jenis</th>
                                 <th style="width: 125px" class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -39,6 +40,7 @@
                                     <td class="text-center">{{ $key+1 }}</td>
                                     <td>{{ $data->kode_gejala }}</td>
                                     <td>{{ $data->nama_gejala }}</td>
+                                    <td>{{ $data->jenis_gejala }}</td>
                                     <td class="text-center">
                                         <form action="{{ route('gejala.destroy',$data->id) }}" method="POST">
                                             <a class="btn btn-warning btn-sm" href="{{ route('gejala.edit',$data->id) }}"><i class="fas fa-pencil-alt"></i> Edit</a>

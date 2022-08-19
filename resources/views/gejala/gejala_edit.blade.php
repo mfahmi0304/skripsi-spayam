@@ -28,6 +28,10 @@
                                     <input type="text" class="form-control" name="nama_gejala" placeholder="Nama Gejala" value="{{ $gejala->nama_gejala }}" required>
                                 </div>
                                 <div class="form-group">
+                                    <label>Jenis Gejala</label>
+                                    <input type="text" class="form-control" name="jenis_gejala" placeholder="Jenis Gejala" value="{{ $gejala->jenis_gejala }}" required>
+                                </div>
+                                <div class="form-group">
                                     <button type="submit" class="btn btn-sm btn-success">Simpan</button>
                                 </div>
                             </div>

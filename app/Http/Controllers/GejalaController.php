@@ -57,6 +57,7 @@ class GejalaController extends Controller
         DB::table('gejalas')->insert([
             'kode_gejala'   => $request->kode_gejala,
             'nama_gejala'   => $request->nama_gejala,
+            'jenis_gejala'  => $request->jenis_gejala,
             'created_at'    => Carbon::now(),
             'updated_at'    => Carbon::now(),
         ]);
@@ -104,6 +105,7 @@ class GejalaController extends Controller
         DB::table('gejalas')->where('id',$request->id)->update([
             'kode_gejala'   => $request->kode_gejala,
             'nama_gejala'   => $request->nama_gejala,
+            'jenis_gejala'  => $request->jenis_gejala,
             'updated_at'    => Carbon::now(),
         ]);
         return redirect('gejala')->with('success','Data Berhasil Diperbarui');
