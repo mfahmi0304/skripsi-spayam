@@ -137,6 +137,47 @@ class DiagnosaController extends Controller
         $gejala = [];
         $id_gejala = explode(",", $diagnosa[0]->gejala);
 
+        $get_penyakit = DB::table('basis_pengetahuans')
+            // ->join('penyakits', 'penyakits.id', 'diagnosas.id_penyakit')
+            ->whereIn('id_gejala', $id_gejala)
+            ->where('id_penyakit', '!=', $diagnosa[0]->id_penyakit)
+            ->get();
+
+        $data = '';
+        $i = 0;
+        foreach($get_penyakit as $g){
+            $data .= $g->id_penyakit .','; 
+            $i++;
+        }
+        $datas = explode(',', $data);
+        $freq = array_count_values($datas);
+        arsort($freq);
+
+        $ids = array_keys($freq);
+        $count = array_values($freq);
+
+        // dd($freq);
+        $j = 0;
+        $penyakit_lain = [];
+
+        foreach($ids as $id){
+            if($id != ''){
+                $get_penyakit = DB::table('basis_pengetahuans')
+                ->join('penyakits', 'penyakits.id', 'basis_pengetahuans.id_penyakit')
+                ->select('nama_penyakit')
+                ->where('id_penyakit', $id)
+                ->get();
+                
+                $penyakit_lain[$j]['nama_penyakit'] = $get_penyakit[0]->nama_penyakit;
+                $penyakit_lain[$j]['kemungkinan'] = (int) (($count[$j] / $get_penyakit->count())*100);
+
+                $j++;
+            }
+        }
+
+        $keys = array_column($penyakit_lain, 'kemungkinan');
+        array_multisort($keys, SORT_DESC, $penyakit_lain);
+
         foreach($id_gejala as $id){
             $get_gejala = DB::table('gejalas')
                 ->where('id', $id)
@@ -144,7 +185,7 @@ class DiagnosaController extends Controller
             array_push($gejala, $get_gejala->nama_gejala);
         }
 
-        return view('diagnosa.diagnosa_show', compact(['diagnosa', 'role', 'gejala']));
+        return view('diagnosa.diagnosa_show', compact(['diagnosa', 'role', 'gejala', 'penyakit_lain']));
     }
 
     /**

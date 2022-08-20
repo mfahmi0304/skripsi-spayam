@@ -37,6 +37,8 @@
 
                             <h3><b>{{$penyakit[0]}}</b></h3>
                             <h4><i>({{$penyakit[1]}}</i></h4>
+                            <h6><span class="badge badge-danger">Kemungkinan: 100%</span></h6>
+
                             <p class="text-justify">{{$diagnosa[0]->detail}}</p>
                         </div>
                         <div class="col-md-4 col-sm-12 text-right">
@@ -56,6 +58,24 @@
                                 </div>
                                 <div class="card-body">
                                     <p class="text-justify">{{$diagnosa[0]->solusi}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card text-white bg-danger mb-3">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <h3 class="card-title">Kemungkinan Penyakit Lain</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                @foreach($penyakit_lain as $key => $data)
+                                    {{$key+1}} . {{$data['nama_penyakit']}} : {{$data['kemungkinan']}}%<br>
+                                @endforeach
                                 </div>
                             </div>
                         </div>
