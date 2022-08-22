@@ -27,7 +27,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Gejala</label>
-                                    <input type="text" class="form-control" name="jenis_gejala" placeholder="Jenis Gejala" required>
+                                    <select class="form-control" name="jenis_gejala" required>
+                                        <option value"Pernapasan">Pernapasan</option>
+                                        <option value"Pencernaan">Pencernaan</option>
+                                        <option value"Fisik">Fisik</option>
+                                        <option value"Masalah Mata">Masalah Mata</option>
+                                        <option value"Perilaku">Perilaku</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-sm btn-success">Simpan</button>

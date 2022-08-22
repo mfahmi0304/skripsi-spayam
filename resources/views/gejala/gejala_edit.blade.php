@@ -29,7 +29,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Gejala</label>
-                                    <input type="text" class="form-control" name="jenis_gejala" placeholder="Jenis Gejala" value="{{ $gejala->jenis_gejala }}" required>
+                                    <select class="form-control" name="jenis_gejala" required>
+                                        <option value"Pernapasan" {{ ( $gejala->jenis_gejala == 'Pernapasan') ? 'selected' : '' }}>Pernapasan</option>
+                                        <option value"Pencernaan" {{ ( $gejala->jenis_gejala == 'Pencernaan') ? 'selected' : '' }}>Pencernaan</option>
+                                        <option value" {{ ( $gejala->jenis_gejala == 'Fisik') ? 'selected' : '' }}>Fisik</option>
+                                        <option value"Masalah Mata" {{ ( $gejala->jenis_gejala == 'Masalah Mata') ? 'selected' : '' }}>Masalah Mata</option>
+                                        <option value"Perilaku" {{ ( $gejala->jenis_gejala == 'Perilaku') ? 'selected' : '' }}>Perilaku</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-sm btn-success">Simpan</button>

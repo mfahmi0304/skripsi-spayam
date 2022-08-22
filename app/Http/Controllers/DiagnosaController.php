@@ -63,7 +63,12 @@ class DiagnosaController extends Controller
         }
 
         $gejala = DB::table('gejalas')->get();
-        return view('diagnosa.diagnosa_add', compact(['gejala', 'role']));
+        $gejala_pernapasan = DB::table('gejalas')->where('jenis_gejala', 'Pernapasan')->get();
+        $gejala_pencernaan = DB::table('gejalas')->where('jenis_gejala', 'Pencernaan')->get();
+        $gejala_fisik = DB::table('gejalas')->where('jenis_gejala', 'Fisik')->get();
+        $gejala_mata = DB::table('gejalas')->where('jenis_gejala', 'Masalah Mata')->get();
+        $gejala_perilaku = DB::table('gejalas')->where('jenis_gejala', 'Perilaku')->get();
+        return view('diagnosa.diagnosa_add', compact(['gejala', 'gejala_pernapasan', 'gejala_pencernaan', 'gejala_fisik', 'gejala_mata', 'gejala_perilaku', 'role']));
     }
 
     /**
@@ -75,7 +80,7 @@ class DiagnosaController extends Controller
     public function store(Request $request)
     {        
         $id_gejala = implode(",",$request->id_gejala);
-        
+        dd($id_gejala);        
         $penyakit = DB::table('penyakits')->get();
 
         $res = [];
